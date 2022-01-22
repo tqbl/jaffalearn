@@ -5,7 +5,12 @@ from .datasets import (
     VariableLengthDataset,
 )
 from .features import MelSpectrogramExtractor, SpectrogramExtractor, Resampler
-from .loader import MappedDataLoader, DataTransformer, DataLoaderFactory
+from .loader import (
+    MappedDataLoader,
+    DataTransformer,
+    IterationBasedLoader,
+    DataLoaderFactory,
+)
 from .mixed import MixedBatchSampler, MixedDataset, MixedDataLoaderFactory
 
 
@@ -20,6 +25,7 @@ __all__ = [
     'MappedDataLoader',
     'DataLoaderFactory',
     'DataTransformer',
+    'IterationBasedLoader',
     'MixedBatchSampler',
     'MixedDataset',
     'MixedDataLoaderFactory',

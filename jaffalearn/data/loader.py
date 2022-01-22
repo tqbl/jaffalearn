@@ -63,6 +63,29 @@ class DataTransformer(MappedDataLoader):
         return map(self.transform, super().__iter__())
 
 
+class IterationBasedLoader:
+    def __init__(self, loader, n_iterations):
+        self.loader = loader
+        self.n_iterations = n_iterations
+        self._iter = loader.__iter__()
+
+    def to(self, device):
+        self.loader.to(device)
+
+    def __iter__(self):
+        for i in range(self.n_iterations):
+            try:
+                batch = next(self._iter)
+            except StopIteration:
+                self._iter = self.loader.__iter__()
+                batch = next(self._iter)
+
+            yield batch
+
+    def __len__(self):
+        return self.n_iterations
+
+
 class DataLoaderFactory:
     def __init__(self,
                  sample_rate=None,
