@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "jaffalearn"
-version = "0.1.1"
+version = "0.2.0"
 description = "A PyTorch-based ML framework with a focus on audio classification problems"
 authors = ["Turab Iqbal <t.iqbal@surrey.ac.uk>"]
 repository = "https://github.com/tqbl/jaffalearn"
