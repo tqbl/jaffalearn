@@ -25,7 +25,7 @@ class _AudioDataset(Dataset):
 
         # Use canonical labeling method if 'default' is specified
         if labeler == 'default':
-            labeler = subset.target
+            labeler = subset.dataset.target
         self.labeler = labeler
 
         self.pad_fn = pad_fn or zero_pad
@@ -48,7 +48,7 @@ class _AudioDataset(Dataset):
         if self.labeler is None:
             return None
 
-        y = self.labeler(self.subset.audio_paths[file_index].name)
+        y = self.labeler(self.subset, self.subset.audio_paths[file_index].name)
         if y is not None:
             return torch.as_tensor(y.values, dtype=torch.float32)
 
